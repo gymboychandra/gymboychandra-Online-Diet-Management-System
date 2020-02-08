@@ -1,0 +1,7 @@
+reference link--
+
+#https://www.baeldung.com/spring-boot-security-autoconfiguration
+#https://dzone.com/articles/spring-security-5-form-login-with-database-provide
+#https://developer.okta.com/blog/2017/12/04/basic-crud-angular-and-spring-boot
+#https://www.javatpoint.com/angular-spring-crud-example
+#for messages alert service - https://jasonwatmore.com/post/2018/10/29/angular-7-user-registration-and-login-example-tutorial
