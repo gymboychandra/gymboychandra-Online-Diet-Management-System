@@ -1,0 +1,82 @@
+<div fxLayout="row" fxLayoutWrap="wrap" class="login-box">
+<mat-card class="mat-elevation-z8">
+      <mat-card-title>Enter your measurements!</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="monthlymeasurementform" (ngSubmit)="submitLog()">
+		<!-- User Measurement date -->
+		 <div>
+			<input type="text" [matDatepicker]="myDatepicker"  [formControl]="date1" id="date" placeholder="Month and Year" >
+			<mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+			<mat-datepicker #myDatepicker startView="multi-year" panelClass="example-month-picker" 
+											(yearSelected)="chosenYearHandler($event)"
+											(monthSelected)="chosenMonthHandler($event, myDatepicker)">
+			</mat-datepicker>
+          </div>
+		<!-- User weight measurement -->
+          <div>
+            <mat-form-field>
+              <input type="number" matInput  formControlName="weight" id="weight" placeholder="Weight (Kgs)">  
+            </mat-form-field>
+          </div>
+		<!-- User height measurement -->
+          <div>
+            <mat-form-field>	
+              <input type="number" matInput placeholder="Height (inches)" formControlName="height" id="height">
+            </mat-form-field>
+          </div>		  
+		 <!-- User chest measurement -->
+          <div>
+            <mat-form-field>	
+              <input type="number" matInput placeholder="Chest (inches)" formControlName="chest" id="chest">
+            </mat-form-field>
+          </div>
+		<!-- waist measurement -->
+          <div>
+            <mat-form-field>	
+              <input type="number" matInput placeholder="Waist (inches)" formControlName="waist" id="waist">
+            </mat-form-field>
+          </div>		  
+		<!-- shoulders measurement -->
+		<div>
+			<mat-form-field>	
+			  <input type="number" matInput placeholder="Shoulders(inches)" formControlName="shoulders" id="shoulders">
+			</mat-form-field>
+		</div>
+	
+		<!-- biceps measurement -->
+		<div>
+			<mat-form-field>	
+			  <input type="number" matInput placeholder="Biceps (inches)" formControlName="biceps" id="biceps">
+			</mat-form-field>
+		</div>
+		
+		<!-- forearm measurement -->
+		<div>
+			<mat-form-field>	
+			  <input type="number" matInput placeholder="Forearm (inches)" formControlName="forearm" id="forearm">
+			</mat-form-field>
+		</div>
+		
+		<!-- legs measurement -->
+		<div>
+			<mat-form-field>	
+			  <input type="number" matInput placeholder="Legs (inches)" formControlName="legs" id="legs">
+			</mat-form-field>
+		</div>
+		
+		<!-- thighs measurement -->
+		<div>
+			<mat-form-field>	
+			  <input type="number" matInput placeholder="Thighs (inches)" formControlName="thighs" id="thighs">
+			</mat-form-field>
+		</div>
+			
+		 <!-- Submit button-->
+          <div class="button">
+            <button type="submit" mat-raised-button [disabled]="monthlymeasurementform.invalid" color="primary">Done</button>
+          </div>
+		  
+        </form>
+      </mat-card-content>
+</mat-card>
+ </div>

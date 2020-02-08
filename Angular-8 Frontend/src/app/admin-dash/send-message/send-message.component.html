@@ -1,0 +1,30 @@
+<mat-sidenav-container class="container">
+  <form [formGroup]="sendmessageform" class="admin-dash-header">
+	  <div>
+		<mat-form-field>
+		 <mat-select placeholder="Receiver" formControlName="receivers">
+			<mat-option *ngFor="let receiver of userList" [value]="receiver.id" (onSelectionChange)="change($event)">
+			{{receiver.email}}</mat-option>
+		 </mat-select>
+		</mat-form-field>
+	  </div>
+	  <div class="motivator-dash-container">
+		<mat-table mat-table [dataSource]="dataSource">
+			  <ng-container matColumnDef="conversation">
+				<mat-header-cell *matHeaderCellDef></mat-header-cell>
+				<mat-cell *matCellDef="let receivedmessage"> {{receivedmessage}} </mat-cell>
+			  </ng-container>
+			   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			   <mat-row *matRowDef="let row; columns: displayedColumns;">
+			   </mat-row>
+		</mat-table>
+	 </div>
+	  <div class="conversation-input">
+		 <mat-divider></mat-divider>
+		 <mat-form-field class="full-width">
+		   <input matInput placeholder="Type message..." formControlName="message" name="message">
+		 <mat-icon matSuffix (click)="sendMessage()" >send</mat-icon> 
+		 </mat-form-field>
+	  </div> 
+  </form>
+</mat-sidenav-container>

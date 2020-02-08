@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<span>Referal Based Diet Management System</span>
+
+		<span class="example-fill-remaining-space"></span>
+		<button mat-button [routerLink]="['/add-challenger']" routerLinkActive="add-challenger" [hidden]="!globals.invalidLogin">Register</button>
+		<button mat-button [routerLink]="['/login']" [hidden]="!globals.invalidLogin">Login</button>
+		<button mat-button [routerLink]="['/logout']" routerLinkActive="logout" [hidden]="globals.invalidLogin" (click)="onLogout()">Logout</button>
+		<button mat-icon-button [matMenuTriggerFor]="menu" [hidden]="globals.invalidLogin && (globals.role != 'admin')">
+		  <mat-icon>more_vert</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			  <button mat-menu-item [routerLink]="['/manage-user']" routerLinkActive="manage-user" [hidden]="globals.role != 'admin'">
+				<mat-icon>person_outline</mat-icon>
+				<span>Manage User</span>
+			  </button>
+			  <button mat-menu-item [routerLink]="['/add-challenger']" routerLinkActive="add-challenger" [hidden]="globals.role != 'admin'">
+				<mat-icon>person_add</mat-icon>
+				<span>Add User</span>
+			  </button>
+			  <button mat-menu-item [routerLink]="['/admin-dashboard']" routerLinkActive="admin-dashboard" [hidden]="globals.role != 'admin'">
+				<mat-icon>list</mat-icon>
+				<span>Pending Approvals</span>
+			  </button>
+			  <button mat-menu-item [routerLink]="['/app-user-activity-log']" routerLinkActive="app-user-activity-log" [hidden]="globals.role != 'challenger'">
+				<mat-icon>poll</mat-icon>
+				<span>Update Logs</span>
+			  </button>
+			  <button mat-menu-item [routerLink]="['/user-measurement-log']" routerLinkActive="user-measurement-log" [hidden]="globals.role != 'challenger'">
+				<mat-icon>pages</mat-icon>
+				<span>Update Measurements</span>
+			  </button> 
+			  <button mat-menu-item [routerLink]="['/upload-weekly-plan']" routerLinkActive="upload-weekly-plan" [hidden]="globals.role != 'admin'">
+				<mat-icon>fastfood</mat-icon> 
+				<span>Post Diet Plan</span>
+			  </button>
+			  <button mat-menu-item [routerLink]="['/view-logs']" routerLinkActive="view-logs" [hidden]="globals.role == 'challenger'">
+				<mat-icon>pages</mat-icon>
+				<span>View Logs/Measurements</span>
+			  </button> 
+			  <button mat-menu-item [routerLink]="['/send-message']" routerLinkActive="send-message">
+				<mat-icon>mail_outline</mat-icon>
+				<span>Send Message</span>
+			  </button>
+		</mat-menu>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+<router-outlet></router-outlet>

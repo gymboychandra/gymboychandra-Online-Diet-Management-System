@@ -1,0 +1,175 @@
+<div class="admin-dash-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="admin-dash-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+	<!-- Challenger action to add/update/delete -->
+	<ng-container matColumnDef="action">
+	  <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+		<button mat-mini-fab color="" (click) = "editUser(row)">
+			<mat-icon>edit</mat-icon>
+		</button>
+		<button mat-mini-fab color="warn" (click) = "deleteUser(row)">
+			<mat-icon>clear</mat-icon>
+		</button>
+		</mat-cell>
+	</ng-container>
+	
+    <!-- Challenger ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger Name Column -->
+	 <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger Email Column -->
+	 <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let row" (click)="showUserDetails(row)" class="emailCell"> {{row.email}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger Mobile Column -->
+	<ng-container matColumnDef="mobile">
+      <mat-header-cell *matHeaderCellDef> Mobile </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.mobile}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger batch Column -->
+	<ng-container matColumnDef="batchId">
+	  <mat-header-cell *matHeaderCellDef>Batch</mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+		  <mat-select placeholder = "Select Batch" [(ngModel)] = "row.batchId" name = "batchId" (selectionChange)="loadGroups(row.batchId)">
+			 <mat-option *ngFor = "let batch of batches" 
+				[value] = "batch.batchId">
+				{{batch.batchName}}
+			 </mat-option>
+		  </mat-select>
+		</mat-cell>
+	</ng-container>
+	<!-- Challenger group Column -->
+	<ng-container matColumnDef="groupId">
+	  <mat-header-cell *matHeaderCellDef>Group</mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+		  <mat-select placeholder = "Select Group" [(ngModel)] = "row.groupId" name = "groupId">
+			 <mat-option *ngFor = "let group of groups" 
+				[value] = "group.id">
+				{{group.groupName}}
+			 </mat-option>
+		  </mat-select>
+		</mat-cell>
+	</ng-container>
+	
+	<!-- Challenger update button -->
+	<ng-container matColumnDef="update">
+	  <mat-header-cell *matHeaderCellDef>Done?</mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+		<button mat-mini-fab color="primary" (click) = "updateUser(row)">
+			<mat-icon>done</mat-icon>
+		</button>
+		</mat-cell>
+	</ng-container>
+	
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> 
+ </div>
+ 
+ 
+ 
+ 
+ <div class="admin-dash-container mat-elevation-z8" [hidden]="!clicked">
+
+  <mat-table [dataSource]="dataSourceUser">
+
+    <!-- Challenger Name Column -->
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.fullName}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger age -->
+    <ng-container matColumnDef="age">
+      <mat-header-cell *matHeaderCellDef > Age </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.age}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger gender -->
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.gender}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger state -->
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.state}} </mat-cell>
+    </ng-container>
+
+	<!-- Challenger country -->
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.country}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger BMI -->
+    <ng-container matColumnDef="bmi">
+      <mat-header-cell *matHeaderCellDef> BMI </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.bmi}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger Reason -->
+    <ng-container matColumnDef="reason">
+      <mat-header-cell *matHeaderCellDef> Reason </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.reason}} </mat-cell>
+    </ng-container> 
+	
+	<!-- Challenger Medical Condition -->
+    <ng-container matColumnDef="medicalCondition">
+      <mat-header-cell *matHeaderCellDef> Medical Condition </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.medicalCondition}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger Diet Restriction -->
+    <ng-container matColumnDef="dietRestriction">
+      <mat-header-cell *matHeaderCellDef> Diet Restriction </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.dietRestriction}} </mat-cell>
+    </ng-container> 
+	
+	<!-- Challenger Diet Type -->
+    <ng-container matColumnDef="dietType">
+      <mat-header-cell *matHeaderCellDef> Diet Type </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.dietType}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger Diet Type -->
+    <ng-container matColumnDef="pregnancyStatus">
+      <mat-header-cell *matHeaderCellDef> Pregnancy Status </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.pregnancyStatus}} </mat-cell>
+    </ng-container>
+	
+	<!-- Challenger Referred Code -->
+    <ng-container matColumnDef="referredCode">
+      <mat-header-cell *matHeaderCellDef> Referral Code </mat-header-cell>
+      <mat-cell *matCellDef="let rowUser"> {{rowUser.referredCode}} </mat-cell>
+    </ng-container>
+	
+    <mat-header-row *matHeaderRowDef="displayedUserColumns"></mat-header-row>
+    <mat-row *matRowDef="let rowUser; columns: displayedUserColumns;">
+    </mat-row>
+  </mat-table>
+  
+ </div>

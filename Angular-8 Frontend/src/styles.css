@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:200,300,400,600');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  font-family: 'Muli', sans-serif;
+   margin: 0;
+}
+
+
+.h1,
+h1 {
+  font-size: 25px;
+  font-weight: 300;
+  margin: 0;
+}
+
+h5 {
+  font-weight: 600;
+}
+
+.btn.focus,
+.btn:focus,
+.form-control:focus,
+.custom-select:focus,
+.custom-select:focus {
+  box-shadow: none;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+  border-color: #E91E63;
+  background-color: #E91E63;
+}
+
+.custom-control-input:focus~.custom-control-label::before {
+  box-shadow: none;
+}
+
+.custom-control-label {
+  cursor:  pointer;
+}
+
+.error:focus,
+.error {
+  border-color: #E91E63;
+  color: #E91E63;
+}
+
+.invalid-feedback {
+  color: #E91E63;
+   display: block;
+}
+
+.btn-danger,
+body .btn-danger:hover {
+  background: rgb(35, 85, 6);
+  border-color: rgb(13, 109, 29);
+  color: #4EABE6;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.login {
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+.login-header,
+.login p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.login-header {
+  background: rgb(122, 126, 145);
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+.login p {
+  padding: 12px;
+}
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  #box-sizing: border-box;
+}
+
+.radio-button {
+  margin: 0px 2px 0px 4px;
+}
+
+.mat-form-field {
+width: 100%;
+min-width: 300px;
+}
+
+
+.login-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 5%;
+}

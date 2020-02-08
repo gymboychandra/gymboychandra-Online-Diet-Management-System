@@ -1,0 +1,60 @@
+<div fxLayout="row" fxLayoutWrap="wrap" class="login-box">
+<mat-card class="mat-elevation-z8">
+      <mat-card-title>Enter your activities!</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="useractivityform" (ngSubmit)="enterLog()">
+		<!-- User Activity date -->
+		 <div>
+            <mat-form-field>
+			  <input type='date' matInput formControlName="activityDate" id="activityDate" placeholder="activityDate" required>
+			  <mat-error *ngIf="useractivityform.controls['activityDate'].errors?.required && 
+						  useractivityform.controls['activityDate'].touched">Select activity date</mat-error>
+            </mat-form-field>
+          </div>
+		<!-- User Breakfast log -->
+          <div>
+            <mat-form-field>
+              <input type="text" matInput  formControlName="breakfast" id="breakfast" placeholder="Breakfast">  
+            </mat-form-field>
+          </div>
+		<!-- User Lunch log -->
+          <div>
+            <mat-form-field>	
+              <input type="text" matInput placeholder="Lunch" formControlName="lunch" id="lunch">
+            </mat-form-field>
+          </div>		  
+		 <!-- User Dinner log -->
+          <div>
+            <mat-form-field>	
+              <input type="text" matInput placeholder="Dinner" formControlName="dinner" id="dinner">
+            </mat-form-field>
+          </div>
+		<!-- Fruits intake log -->
+          <div>
+            <mat-form-field>	
+              <input type="text" matInput placeholder="Fruits" formControlName="fruits" id="fruits">
+            </mat-form-field>
+          </div>		  
+		<!-- Vegetable intake log -->
+		<div>
+			<mat-form-field>	
+			  <input type="text" matInput placeholder="Vegetables" formControlName="vegetables" id="vegetables">
+			</mat-form-field>
+		</div>
+	
+		<!-- Workout log -->
+		<div>
+			<mat-form-field>	
+			  <input type="text" matInput placeholder="Workout" formControlName="workouts" id="workouts">
+			</mat-form-field>
+		</div>
+			
+		 <!-- Submit button-->
+          <div class="button">
+            <button type="submit" mat-raised-button [disabled]="useractivityform.invalid" color="primary">Done</button>
+          </div>
+		  
+        </form>
+      </mat-card-content>
+</mat-card>
+ </div>

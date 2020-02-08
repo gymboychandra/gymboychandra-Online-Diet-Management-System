@@ -1,0 +1,25 @@
+.admin-dash-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.admin-dash-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.emailCell:hover{
+  color: rgb(204, 25, 189);
+  cursor: pointer;
+}
+
+input.edittable{
+	border: none transparent;
+	outline: none;
+}

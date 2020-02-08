@@ -1,0 +1,149 @@
+<form [formGroup]="viewuserlogsForm">
+	<mat-card class="mat-elevation-z8">
+		<!-- Select log type -->
+		  <mat-card-title>Select log type!</mat-card-title>
+			  <div class="radio-group">
+				<mat-radio-group formControlName="logType" class="custom-control custom-radio radio-button" 
+							(change)="selectLogType($event)" required>
+				  <mat-radio-button value="daily" class="radio-button">
+					Daily
+				  </mat-radio-button>
+				  <mat-radio-button value="monthly" class="radio-button">
+					Monthly
+				  </mat-radio-button>
+				  <mat-error *ngIf="viewuserlogsForm.controls['logType'].errors?.required && 
+							  viewuserlogsForm.controls['logType'].touched">Select log type!</mat-error>
+				</mat-radio-group> 
+			 </div>
+		  
+		  
+		   <!-- Daily log mat card content -->
+		  <div [hidden]="!isDaily || whichLog ==''">
+		    <div class="admin-dash-header">
+			  <mat-form-field>
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+			  </mat-form-field>
+			</div>
+			  <mat-card-content>
+				<mat-table mat-table [dataSource]="dataSourceDaily">
+				  
+				  <!-- User Id Column -->
+					<ng-container matColumnDef="userId">
+					  <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.userId}} </mat-cell>
+					</ng-container>
+				    <!-- Activity date Column -->
+					<ng-container matColumnDef="activityDate">
+					  <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.activityDate}} </mat-cell>
+					</ng-container>
+				   <!-- breakfast Column -->
+					<ng-container matColumnDef="breakfast">
+					  <mat-header-cell *matHeaderCellDef> Breakfast </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.breakfast}} </mat-cell>
+					</ng-container>
+					<!-- lunch Column -->
+					<ng-container matColumnDef="lunch">
+					  <mat-header-cell *matHeaderCellDef> Lunch </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.lunch}} </mat-cell>
+					</ng-container>
+					<!-- Dinner Column -->
+					<ng-container matColumnDef="dinner">
+					  <mat-header-cell *matHeaderCellDef> Dinner </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.dinner}} </mat-cell>
+					</ng-container>
+					<!-- Fruits Column -->
+					<ng-container matColumnDef="fruits">
+					  <mat-header-cell *matHeaderCellDef> Fruits Intake </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.fruits}} </mat-cell>
+					</ng-container>
+					<!-- vegetables Column -->
+					<ng-container matColumnDef="vegetables">
+					  <mat-header-cell *matHeaderCellDef> Vegetable Intake </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.vegetables}} </mat-cell>
+					</ng-container>
+					<!-- Workout Column -->
+					<ng-container matColumnDef="workouts">
+					  <mat-header-cell *matHeaderCellDef> Workout </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.workouts}} </mat-cell>
+					</ng-container>
+				   <mat-header-row *matHeaderRowDef="displayedWeeklyColumns"></mat-header-row>
+				   <mat-row *matRowDef="let row; columns: displayedWeeklyColumns;"></mat-row>
+				</mat-table>
+				<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> 
+			  </mat-card-content>
+		  </div>
+		  
+		  <!-- Monthly log mat card content -->
+		  <div [hidden]="isDaily || whichLog == ''">
+		    <div class="admin-dash-header">
+			  <mat-form-field>
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+			  </mat-form-field>
+			</div>
+			  <mat-card-content>
+				<mat-table mat-table [dataSource]="dataSourceMonthly">
+				   <!-- User Id Column -->
+					<ng-container matColumnDef="userId">
+					  <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.userId}} </mat-cell>
+					</ng-container>
+					 <!-- Date Column -->
+					<ng-container matColumnDef="date">
+					  <mat-header-cell *matHeaderCellDef> Month/Year </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.date}} </mat-cell>
+					</ng-container>
+					 <!-- weight Column -->
+					<ng-container matColumnDef="weight">
+					  <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.weight}} </mat-cell>
+					</ng-container>
+					 <!-- height Column -->
+					<ng-container matColumnDef="height">
+					  <mat-header-cell *matHeaderCellDef> Height </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.height}} </mat-cell>
+					</ng-container>
+					<!-- chest Column -->
+					<ng-container matColumnDef="chest">
+					  <mat-header-cell *matHeaderCellDef> Chest </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.chest}} </mat-cell>
+					</ng-container>
+					<!-- waist Column -->
+					<ng-container matColumnDef="waist">
+					  <mat-header-cell *matHeaderCellDef> Waist </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.waist}} </mat-cell>
+					</ng-container>
+					<!-- shoulders Column -->
+					<ng-container matColumnDef="shoulders">
+					  <mat-header-cell *matHeaderCellDef> Shoulders </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.shoulders}} </mat-cell>
+					</ng-container>
+					<!-- biceps Column -->
+					<ng-container matColumnDef="biceps">
+					  <mat-header-cell *matHeaderCellDef> Biceps </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.biceps}} </mat-cell>
+					</ng-container>
+					<!-- forearm Column -->
+					<ng-container matColumnDef="forearm">
+					  <mat-header-cell *matHeaderCellDef> Forearm </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.forearm}} </mat-cell>
+					</ng-container>
+					<!-- legs Column -->
+					<ng-container matColumnDef="legs">
+					  <mat-header-cell *matHeaderCellDef> Legs </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.legs}} </mat-cell>
+					</ng-container>
+					<!-- thighs Column -->
+					<ng-container matColumnDef="thighs">
+					  <mat-header-cell *matHeaderCellDef> Thighs </mat-header-cell>
+					  <mat-cell *matCellDef="let row"> {{row.thighs}} </mat-cell>
+					</ng-container>
+				   <mat-header-row *matHeaderRowDef="displayedMonthlyColumns"></mat-header-row>
+				   <mat-row *matRowDef="let row; columns: displayedMonthlyColumns;"></mat-row>
+				</mat-table>
+				<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> 
+			  </mat-card-content>
+		  </div>
+		  
+	</mat-card>
+</form>

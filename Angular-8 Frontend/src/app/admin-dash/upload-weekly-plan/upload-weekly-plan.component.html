@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutWrap="wrap" class="login-box">
+	<form [formGroup]="uploaddietplanform" class="mat-elevation-z2" (ngSubmit)="submit()"> 
+		<!-- Select batch -->
+		<div class="row col-md-12 d-block my-3">
+		     <!--<label for="batch">Batch</label> -->
+			 <select  formControlName="batch" id="batch">
+			   <option value="">Select Batch</option>
+			   <option *ngFor="let batch of batches" [ngValue]="batch.batchId">{{batch.batchName}}</option>
+			 </select>
+		</div>
+		<div class="row col-md-12 d-block my-3">
+			<input id="plan" type="file" formControlName="plan" (change)="upload($event.target.files)"/>
+		</div>
+		<br><br>
+		<div class="button">
+			<button type="submit" mat-raised-button [disabled]="uploaddietplanform.invalid" color="primary">Upload</button>
+		</div>
+	 
+	</form>
+    
+ </div>

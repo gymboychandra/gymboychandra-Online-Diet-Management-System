@@ -1,0 +1,146 @@
+<div fxLayout="row" fxLayoutWrap="wrap" class="login-box">
+<mat-card class="mat-elevation-z2">
+      <mat-card-content>
+        <form  *ngIf="user | async; else loading"[formGroup]="challengereditform" (ngSubmit)="onsubmit(challengerDetails)">
+		<!-- Challenger Full Name -->
+          <div>
+            <mat-form-field>
+              <input type="text" matInput  formControlName="fullName" id="fullName" placeholder="Full Name" value={{challenger.fullName}} required>  
+			  <mat-error *ngIf="submitted && challengereditform.controls.fullName.hasError('required')">Full Name is required</mat-error>
+            </mat-form-field>
+          </div>
+		<!-- Challenger Age -->
+          <div>
+            <mat-form-field>	
+              <input type="number" matInput placeholder="Age" value={{challenger.age}} formControlName="age" id="age" required>
+			  <mat-error *ngIf="submitted && challengereditform.controls.age.hasError('required')">Age is required</mat-error>
+            </mat-form-field>
+          </div>
+		  <!-- Challenger Gender -->
+		  <div class="radio-group">
+		    <label id="gender-group-label">Gender</label>
+			<mat-radio-group formControlName="gender" class="custom-control custom-radio radio-button" value={{challenger.gender}} required>
+			  <mat-radio-button value="male" class="radio-button">
+				Male
+			  </mat-radio-button>
+			  <mat-radio-button value="female" class="radio-button">
+				Female
+			  </mat-radio-button>
+			  <mat-radio-button value="transgender" class="radio-button">
+				Transgender
+			  </mat-radio-button>
+			  <mat-error *ngIf="submitted && challengereditform.controls.gender.hasError('required')">Please select a value</mat-error>
+			</mat-radio-group> 
+		 </div>
+		 
+		 <!-- Challenger Mobile number-->
+		  <div>
+            <mat-form-field>	
+              <input type="mobile" matInput placeholder="Mobile Number" value={{challenger.mobile}} formControlName="mobile" id="mobile" required>
+			  <mat-error *ngIf="submitted && challengereditform.controls.mobile.hasError('required')">Mobile number is Required</mat-error>
+			  <mat-error *ngIf="submitted && challengereditform.controls.mobile.hasError('invalid')">Mobile number is Invalid</mat-error>
+            </mat-form-field>
+          </div>
+		<!--Challenger Email -->
+			<div>
+				<mat-form-field>	
+				  <input type="email" matInput placeholder="Email" formControlName="email" value={{challenger.email}} readonly id="email" required>
+				  <mat-error *ngIf="submitted && challengereditform.controls.email.hasError('required')">Email is Required</mat-error>
+				  <mat-error *ngIf="submitted && challengereditform.controls.email.hasError('invalid')">Email format is Invalid</mat-error>
+				</mat-form-field>
+			</div>
+		<!--Challenger Address -->
+			<div>
+			<mat-form-field>
+				<input type="text" matInput formControlName="address" id="address" value={{challenger.address}} placeholder="Address">
+			</mat-form-field>
+			<mat-form-field>
+				<input type="text" matInput formControlName="city" id="city" value={{challenger.city}} placeholder="City">
+			</mat-form-field>
+			<mat-form-field>
+				<input type="text" matInput formControlName="state" id="state" placeholder="State" value={{challenger.state}} required>
+				<mat-error *ngIf="submitted && challengereditform.controls.state.hasError('required')">State is Required</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input type="text" matInput formControlName="country" id="country" placeholder="Country" value={{challenger.country}} required>
+				<mat-error *ngIf="submitted && challengereditform.controls.country.hasError('required')">Country is Required</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input type="number" matInput formControlName="pin" id="pin" placeholder ="Pin" value={{challenger.pin}} required>
+				<mat-error *ngIf="submitted && challengereditform.controls.pin.hasError('required')">Pin is Required</mat-error>
+			</mat-form-field>
+			</div>
+		<!-- Challenger Height -->
+			<div>
+				<mat-form-field>	
+				  <input type="number" matInput placeholder="Height (inches)" value={{challenger.height}} formControlName="height" id="height" required>
+				  <mat-error *ngIf="submitted && challengereditform.controls.height.hasError('required')">Please enter your Height (inches)</mat-error>
+				</mat-form-field>
+			</div>
+			<!-- Challenger Weight -->
+			<div>
+				<mat-form-field>	
+				  <input type="number" matInput placeholder="Weight (Kgs)" value={{challenger.weight}} formControlName="weight" id="weight" required>
+				  <mat-error *ngIf="submitted && challengereditform.controls.weight.hasError('required')">Please enter your Weight (Kgs)</mat-error>
+				</mat-form-field>
+			</div>
+			<!-- Reason to register -->
+			<div>
+				<mat-form-field>	
+				  <input type="text" matInput placeholder="Enter your reason to register" value={{challenger.reason}} formControlName="reason" id="reason">
+				</mat-form-field>
+			</div>
+			<!-- Medical Conditions if any -->
+			<div>
+				<mat-form-field>	
+				  <input type="text" matInput placeholder="Enter your medical condition if any." value={{challenger.medicalCondition}} formControlName="medicalCondition" id="medicalCondition">
+				</mat-form-field>
+			</div>
+			<!-- Diet restriction if any -->
+			<div>
+				<mat-form-field>	
+				  <input type="text" matInput placeholder="Enter your diet restriction if any." value={{challenger.dietRestriction}} formControlName="dietRestriction" id="dietRestriction">
+				</mat-form-field>
+			</div>
+			<!-- Challenger Diet Type -->
+			 <div class="radio-group">
+				<label id="gender-group-label">Diet</label>
+				<mat-radio-group formControlName="dietType" value={{challenger.dietType}} class="custom-control custom-radio radio-button" id ="dietType">
+				  <mat-radio-button value="veg" class="radio-button">
+					Veg
+				  </mat-radio-button>
+				  <mat-radio-button value="nonVeg" class="radio-button">
+					NonVeg
+				  </mat-radio-button>
+				  <mat-radio-button value="vegan" class="radio-button">
+					Vegan
+				  </mat-radio-button>
+				  <mat-radio-button value="other" class="radio-button">
+					Other
+				  </mat-radio-button>
+				</mat-radio-group> 
+			 </div>
+			 <!-- Challenger pregnancy status -->
+			 <div class="radio-group" [hidden]="!(challengereditform.controls.gender.value == 'female')">
+				<label id="gender-group-label">Are you pregnant?</label>
+				<mat-radio-group formControlName="pregnancyStatus" value={{challenger.pregnancyStatus}} class="custom-control custom-radio radio-button" id ="pregnancyStatus" >
+				  <mat-radio-button value=true class="radio-button">
+					Yes
+				  </mat-radio-button>
+				  <mat-radio-button value=false class="radio-button">
+					No
+				  </mat-radio-button>
+				</mat-radio-group> 
+			 </div>
+		 <!-- Register button-->
+          <div class="button">
+            <button type="submit" mat-raised-button [disabled]="challengereditform.invalid" color="primary">Submit</button>
+          </div>
+        </form>
+      </mat-card-content>
+</mat-card>
+ </div>
+ 
+ <ng-template #loading>
+  Loading User...
+</ng-template>
